@@ -16,7 +16,11 @@ INCLUDE data.inc
 
 	update PROC
 
+		PUSHA
+
 		INVOKE drd_processMessages
+
+		POPA
 
 		RET
 	update ENDP

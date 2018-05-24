@@ -4,6 +4,7 @@ git add *.bat
 git add *.bmp
 git status
 pause
-git commit -m "Added scripts for git operations"
+SET /P commie= "Enter commit comment : "
+git commit -m "%commie%"
 git push -u origin master
 pause

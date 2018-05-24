@@ -5,7 +5,7 @@ INCLUDE mainFuncs.inc
 
 .386
 
-.MODEL flat, stdcall
+.MODEL flat, STDCALL
 
 .CODE
 	
@@ -14,6 +14,8 @@ INCLUDE mainFuncs.inc
 		INVOKE init
 
 		loopa:
+			
+			INVOKE draw
 
 			INVOKE update
 

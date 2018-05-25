@@ -5,8 +5,9 @@ This is on assembly 32 using LibDRD which is a "window manager" for assembly, Li
 Also in this project I'm not allowed to use .if and other high level stuff.
 
 # Requirements
-The assembler is MASM32 which you can download somewhere on the internet.
+The assembler is MASM32 which you can [here](http://www.masm32.com/download.htm).
 I build the code on Visual Studio 2017, I also recommend downloading the AsmDude add-on.
+LibDRD is in this project (drd.inc & drd.lib) but if you want the source code you  can get that [here](https://github.com/shooshx/libDRD).
 You also need git for the git scripts (duh).
 To make sure that you build this successfully in Visual Studio you have to do the following:
 1. Create a new empty C++ project
@@ -14,5 +15,6 @@ To make sure that you build this successfully in Visual Studio you have to do th
 3. Right click the project again -> Properties -> Linker -> System -> SubSystem -> Windows -> Press Apply and OK
 4. Right click the project yet again -> Open Folder In File Explorer -> Either download and drop all the files directly or just create a new git repo in this dir and pull from github
  
- # License
- Meh.
+# License
+Meh.
+If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person which maybe or maybe not reading this) sure, I won't stop you (or will I?).

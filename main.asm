@@ -19,6 +19,8 @@ INCLUDE mainFuncs.inc
 
 			INVOKE update
 
+			INVOKE bgcmp
+
 		JMP loopa
 
 		RET

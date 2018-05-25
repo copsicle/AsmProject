@@ -17,4 +17,4 @@ To make sure that you build this successfully in Visual Studio you have to do th
  
 # License
 Meh.
-If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person which maybe or maybe not reading this) sure, I won't stop you (or will I?).
+If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person which may or may not be reading this) sure, I won't stop you (or will I?).

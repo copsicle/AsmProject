@@ -83,4 +83,5 @@ INCLUDE data.inc
 		bg2mv:
 			MOV BG2.pos.x, -1280
 		RET
+
 	bgcmp ENDP

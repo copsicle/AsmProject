@@ -67,7 +67,7 @@ INCLUDE data.inc
 	draw ENDP
 
 	bgcmp PROC
-		
+
 		CMP BG1.pos.x, 1280
 		JE bg1mv
 
@@ -82,6 +82,5 @@ INCLUDE data.inc
 
 		bg2mv:
 			MOV BG2.pos.x, -1280
-
 		RET
 	bgcmp ENDP

@@ -16,5 +16,14 @@ To make sure that you build this successfully in Visual Studio you have to do th
 5. Drag all the files onto the project name in the solution explorer, all of them should be added to the solution.
 6. On the top toolbar click Build -> Rebuild Solution and run (Local Windows Debugger).
 
+To setup the git repository for the scripts to work open CMD after installing git and do the following:
+```git
+cd C:\Users\[Username]\source\repos\project\project
+git init
+git remote add origin https://github.com/copsicle/AsmProject
+git pull origin master
+```
+The last one is optional if you need to update the files, you should be able to use the scripts now.
+
 # License
 If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person which may or may not be reading this) sure, I won't stop you (or will I?).

@@ -19,17 +19,13 @@ INCLUDE data.inc
 
 		INVOKE drd_imageSetTransparent, OFFSET jeff.info, 0
 
-		MOV EBX, 1
-
-		MOV EDX, 1
-
 		MOV BG2.pos.x, -1280
 
 		RET
 	init ENDP
 
 	update PROC
-
+	
 		PUSHA
 
 		INVOKE drd_processMessages
@@ -40,13 +36,13 @@ INCLUDE data.inc
 
 		POPA
 
-		ADD jeff.pos.x, EBX
+		INC jeff.pos.x
 
-		ADD jeff.pos.y, EDX
+		INC jeff.pos.y
 
-		ADD BG1.pos.x, EBX
+		INC BG1.pos.x
 
-		ADD BG2.pos.x, EDX
+		INC BG2.pos.x
 
 		RET
 	update ENDP

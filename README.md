@@ -23,7 +23,7 @@ cd C:\Users\[Username]\source\repos\[yourProject]\[yourProject]
 git init
 git remote add origin [yourRepoLink]
 ```
-You should be able to use the scripts and push/pull your changes. Note that only specific file types get pushed with the script (mostly because I don't want to mess with Visual Studio's files) so you might need to modify it for your needs.
+You should be able to use the scripts and push/pull your changes. Note that only specific file types get pushed with the script (mostly because I don't want to mess with Visual Studio's files) so you might need to modify it for your needs. Sometimes for some reason Git doesn't want to pull for the first time so if you're having this problem try running pull with the "--allow-unrelated-histories" parameter manually once and the scripts should be good from now on.
 
 # License
 If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person who may or may not be reading this) sure, I won't stop you (or will I?).

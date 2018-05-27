@@ -21,6 +21,8 @@ INCLUDE mainFuncs.inc
 
 			INVOKE bgcmp
 
+			INVOKE jeffcmp
+
 		JMP loopa
 
 		RET

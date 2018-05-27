@@ -9,7 +9,7 @@ INCLUDE data.inc
 
 	init PROC
 
-		INVOKE drd_init, 1280, 720, 0
+		INVOKE drd_init, xlen, ylen, winMode
 
 		INVOKE drd_imageLoadFile, OFFSET hddJeff, OFFSET jeff.info
 
@@ -17,9 +17,13 @@ INCLUDE data.inc
 
 		INVOKE drd_imageLoadFile, OFFSET hddBG, OFFSET BG2.info
 
-		INVOKE drd_imageSetTransparent, OFFSET jeff.info, 0
+		INVOKE drd_imageSetTransparent, OFFSET jeff.info, white
 
-		MOV BG2.pos.x, -1280
+		MOV BG2.pos.x, -xlen
+
+		MOV EAX, speed
+
+		MOV EBX, speed
 
 		RET
 	init ENDP
@@ -32,13 +36,13 @@ INCLUDE data.inc
 
 		INVOKE drd_flip
 
-		INVOKE drd_pixelsClear, 0
+		INVOKE drd_pixelsClear, black
 
 		POPA
 
-		INC jeff.pos.x
+		ADD jeff.pos.x, EAX
 
-		INC jeff.pos.y
+		ADD jeff.pos.y, EBX
 
 		INC BG1.pos.x
 
@@ -64,20 +68,51 @@ INCLUDE data.inc
 
 	bgcmp PROC
 
-		CMP BG1.pos.x, 1280
+		CMP BG1.pos.x, xlen
 		JE bg1mv
 
-		CMP BG2.pos.x, 1280
+		CMP BG2.pos.x, xlen
 		JE bg2mv
 
 		RET
 
 		bg1mv:
-			MOV BG1.pos.x, -1280
+			MOV BG1.pos.x, -xlen
 		RET
 
 		bg2mv:
-			MOV BG2.pos.x, -1280
+			MOV BG2.pos.x, -xlen
 		RET
+
+	jeffcmp PROC
+
+		CMP jeff.pos.x, xhitbox
+		JGE xchange
+
+		CMP jeff.pos.x, 0
+		JLE xchange
+
+		goback:
+
+			CMP jeff.pos.y, yhitbox
+			JGE ychange
+
+			CMP jeff.pos.y, 0
+			JLE ychange
+		
+			RET
+		
+		xchange:
+			
+			NEG EAX
+
+		JMP goback
+
+		ychange:
+
+			NEG EBX
+
+		RET
+	jeffcmp ENDP
 
 	bgcmp ENDP

@@ -1,7 +1,18 @@
 
 .CONST
 
+	xlen EQU 1280
+	ylen EQU 720
+	winMode EQU 0
+
+	black EQU 0
+	white EQU 0FFFFFFFFh
 	
+	jeffBorder EQU 320
+	speed EQU 1
+
+	xhitbox EQU xlen - jeffBorder
+	yhitbox EQU ylen - jeffBorder
 
 .DATA
 

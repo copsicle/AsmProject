@@ -26,4 +26,4 @@ git pull origin master
 The last one is optional if you need to update the files, you should be able to use the scripts now.
 
 # License
-If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person which may or may not be reading this) sure, I won't stop you (or will I?).
+If you really searched deep in GitHub to find this specific project and you want to copy it (like one very specific person who may or may not be reading this) sure, I won't stop you (or will I?).

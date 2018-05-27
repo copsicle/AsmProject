@@ -5,8 +5,7 @@ This is on assembly 32 using LibDRD which is a "window manager" for assembly, [L
 Also in this project I'm not allowed to use .if and other high level stuff.
 
 # Requirements
-The assembler is MASM32 which you can [here](http://www.masm32.com/download.htm).
-I build the code on [Visual Studio 2017](https://www.visualstudio.com/), I also recommend downloading the [AsmDude](https://marketplace.visualstudio.com/items?itemName=Henk-JanLebbink.AsmDude) add-on.
+The assembler is [MASM32](http://www.masm32.com/download.htm) and I build the code on [Visual Studio 2017](https://www.visualstudio.com/), I also recommend downloading the [AsmDude](https://marketplace.visualstudio.com/items?itemName=Henk-JanLebbink.AsmDude) add-on.
 LibDRD is included in this repo (as drd.inc & drd.lib).
 You also need [git](https://git-scm.com/) for the git scripts (duh).
 To make sure that you build this successfully in Visual Studio you have to do the following:

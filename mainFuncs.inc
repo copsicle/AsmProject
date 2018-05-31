@@ -11,6 +11,27 @@ INCLUDE data.inc
 
 .CODE
 
+	startPos PROC
+
+	;Start of set starting positions function
+				
+		MOV player1.pos.x, playerW * 2
+
+		MOV player1.pos.y, playerMid 
+		
+		MOV player2.pos.x, xlen - (playerW * 3)
+
+		MOV player2.pos.y, playerMid
+
+		MOV ball.pos.x, ballMidX
+
+		MOV ball.pos.y, ballMidY
+
+		;Starting positions for all images
+
+		RET
+	startPos ENDP
+	
 	init PROC
 	
 	;Start of initializing function
@@ -25,11 +46,19 @@ INCLUDE data.inc
 
 		INVOKE drd_imageLoadFile, OFFSET hddBG, OFFSET BG2.info
 
+		INVOKE drd_imageLoadFile, OFFSET hddPlayer, OFFSET player1.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddPlayer, OFFSET player2.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddBall, OFFSET ball.info
+
 		;Load all the images to memory
 
 		INVOKE drd_imageSetTransparent, OFFSET jeff.info, white
 
-		;Set the background color of the picture (which is white) to transparent
+		INVOKE drd_imageSetTransparent, OFFSET ball.info, black
+
+		;Set the background color of pictures to transparent
 
 		MOV BG2.pos.x, -xlen
 
@@ -40,6 +69,10 @@ INCLUDE data.inc
 		MOV EBX, speed
 
 		;Putting initial speed values into registers
+
+		INVOKE startPos
+
+		;Put all characters in starting positions
 
 		RET
 	init ENDP
@@ -64,21 +97,19 @@ INCLUDE data.inc
 
 		;Clear back buffer
 
+		;INVOKE Sleep, 20
+
+		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
+
 		POPA
 
 		;Pop all registers to prevent drd from being evil
-
+		
 		ADD jeff.pos.x, EAX
 
 		ADD jeff.pos.y, EBX
 
 		;Add register values to position of character
-
-		INC BG1.pos.x
-
-		INC BG2.pos.x
-
-		;Increases background X position by one to create scrolling effect
 
 		RET
 	update ENDP
@@ -97,6 +128,12 @@ INCLUDE data.inc
 
 		INVOKE drd_imageDraw, OFFSET jeff.info, jeff.pos.x, jeff.pos.y
 
+		INVOKE drd_imageDraw, OFFSET ball.info, ball.pos.x, ball.pos.y
+
+		INVOKE drd_imageDraw, OFFSET player1.info, player1.pos.x, player1.pos.y
+
+		INVOKE drd_imageDraw, OFFSET player2.info, player2.pos.x, player2.pos.y
+
 		;Draws all the images using the image info in the struct and the positions
 		
 		POPA
@@ -108,7 +145,13 @@ INCLUDE data.inc
 
 	bgcmp PROC
 
-	;Start of background comparing function
+	;Start of background moving and comparing function
+
+		INC BG1.pos.x
+
+		INC BG2.pos.x
+
+		;Increases background X position by one to create scrolling effect
 
 		CMP BG1.pos.x, xlen
 		JE bg1mv
@@ -132,9 +175,11 @@ INCLUDE data.inc
 
 		;Same as last one but for the second image
 
+	bgcmp ENDP
+
 	jeffcmp PROC
 
-	;Start of Jeff compare function
+	;Start of Jeff comparing and moving function
 	;I call this one "The Windows XP ScreenSaver"
 
 		CMP jeff.pos.x, xhitbox
@@ -173,5 +218,3 @@ INCLUDE data.inc
 
 		RET
 	jeffcmp ENDP
-
-	bgcmp ENDP

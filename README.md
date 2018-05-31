@@ -1,6 +1,6 @@
 # The Amazing Assembly Project
 Welcome to the project page.
-I really don't know what I want my project to be yet but it needs to be something cool or a basic game.
+I'm currently focusing on making basic pong and i'll try to put a twist on the game once i'm done with the basic code.
 This is on assembly 32 using LibDRD which is a "window manager" for assembly, [LibDRD is on GitHub](https://github.com/shooshx/libDRD) if you want the source code.
 Also in this project I'm not allowed to use .if and other high level stuff.
 

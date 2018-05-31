@@ -37,7 +37,7 @@ INCLUDE mainFuncs.inc
 
 			INVOKE jeffcmp
 
-			;Call all  drawing and updating functions and repeat them infinitly
+			;Call all drawing and updating functions and repeat them infinitly
 
 		JMP loopa
 

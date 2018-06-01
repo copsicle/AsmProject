@@ -33,15 +33,28 @@
 .DATA
 
 	hddJeff BYTE "jeff.bmp", 0
-	hddBG BYTE "bg.bmp", 0
+	hddBG BYTE "bg2.bmp", 0
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
 
 	;Saves locations of images to memory as bytes
 
-	Rev STRUCT
+	Resources STRUCT
+
+		info Img<>
 		
-	Rev ENDS
+	Resources ENDS
+
+	Keys STRUCT
+
+		Up DWORD ?
+		Down DWORD ?
+		KeyW DWORD ?
+		KeyS DWORD ?
+		KeyR DWORD ?
+		Space DWORD ?
+
+	Keys ENDS
 
 	Character STRUCT
 
@@ -50,6 +63,8 @@
 		pos POINT<>
 
 		drc POINT<>
+
+		button Keys<>
 
 	Character ENDS
 

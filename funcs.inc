@@ -97,3 +97,64 @@
 
 		RET
 	jeffcmp ENDP
+
+	pauseGame PROC
+
+	;Start of game pausing function
+
+		PUSHA
+
+		INVOKE GetAsyncKeyState, PKEY
+		CMP AX, 0
+		JNE doIt
+		
+		;Jump to doIt if the P key is pressed
+
+		JMP skipTimeout
+
+		;Jump to skipTimeout if we don't want to pause the game
+
+		doIt:
+		
+		INVOKE Sleep, 500
+
+		;Timeout for the user to release the key
+
+		POPA
+
+		;Making sure any registers don't get bamboozled in the process
+
+		check:
+
+		PUSHA
+		
+		INVOKE drd_processMessages
+
+		;Mkae sure we get key inputs
+		
+		INVOKE GetAsyncKeyState, PKEY
+		CMP AX, 0
+		JNE unPauseGame
+
+		;Unpause the game if p is pressed again
+		
+		POPA
+		
+		JMP check
+
+		unPauseGame:
+		
+		INVOKE Sleep,500
+
+		;Unpressing timeout
+		
+		skipTimeout:
+
+		;Skip the unpressing timeout if we didn't pause the game
+		
+		POPA
+
+		;If it's quirky but it works clap your hands
+
+		RET
+	pauseGame ENDP

@@ -32,7 +32,7 @@ INCLUDE mainFuncs.inc
 			INVOKE draw
 
 			INVOKE update
-
+			
 			INVOKE bgcmp
 
 			INVOKE jeffcmp

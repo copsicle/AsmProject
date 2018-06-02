@@ -25,19 +25,25 @@
 	playerW EQU 20
 	playerH EQU 160
 	playerMid EQU (ylen - playerH) / 2
+
+	;Pong player info
 	
 	ballBorder EQU 20
 	ballMidX EQU (xlen - ballBorder) / 2
 	ballMidY EQU (ylen - ballBorder) / 2
 
-	PKEY EQU 50
-	RKEY EQU 52
-	SKEY EQU 53
-	WKEY EQU 57
+	;Pong ball info
+
+	PKEY EQU 50h
+	RKEY EQU 52h
+	SKEY EQU 53h
+	WKEY EQU 57h
 	space EQU VK_SPACE
 	upArrow EQU VK_UP
 	downArrow EQU VK_DOWN
 	keypress EQU 1000h
+
+	;Keyboard key constants
 
 .DATA
 

@@ -62,15 +62,11 @@ INCLUDE funcs.inc
 
 		;Process window interactions
 
-		INVOKE drd_flip
-
-		;Flip the windows buffers
-
 		INVOKE drd_pixelsClear, black
 
 		;Clear back buffer
 
-		INVOKE Sleep, 5
+		INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
 
@@ -83,6 +79,8 @@ INCLUDE funcs.inc
 		ADD jeff.pos.y, EBX
 
 		;Add register values to position of character
+
+		INVOKE pauseGame
 
 		RET
 	update ENDP
@@ -108,6 +106,10 @@ INCLUDE funcs.inc
 		INVOKE drd_imageDraw, OFFSET player2.info, player2.pos.x, player2.pos.y
 
 		;Draws all the images using the image info in the struct and the positions
+
+		INVOKE drd_flip
+
+		;Flip the windows buffers
 		
 		POPA
 

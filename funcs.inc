@@ -56,48 +56,6 @@
 
 	bgcmp ENDP
 
-	jeffcmp PROC
-
-	;Start of Jeff comparing and moving function
-	;I call this one "The Windows XP ScreenSaver"
-
-		CMP jeff.pos.x, xhitbox
-		JGE xchange
-
-		CMP jeff.pos.x, 0
-		JLE xchange
-
-		;Checks if Jeff touches the top or bottom of the frame
-
-		goback:
-
-			CMP jeff.pos.y, yhitbox
-			JGE ychange
-
-			CMP jeff.pos.y, 0
-			JLE ychange
-
-			;Same as the X one but this is if Jeff touches the left or right of the frame
-		
-			RET
-		
-		xchange:
-			
-			NEG EAX
-
-		JMP goback
-
-		;Changes direction of X movement on goes back to check Y
-
-		ychange:
-
-			NEG EBX
-
-		;Changes Y and returns back to the function
-
-		RET
-	jeffcmp ENDP
-
 	pauseGame PROC
 
 	;Start of game pausing function
@@ -158,3 +116,76 @@
 
 		RET
 	pauseGame ENDP
+
+	moveObject PROC adrObj:DWORD
+
+		PUSHA
+
+		MOV ECX, adrObj
+
+		;Put the object address in a register
+
+		MOV EDX, [ECX + 8]
+
+		;Character object layout 1. pos -> 2 DWORDS for x and y(8 bytes)
+		;2. drc -> same as pos (starting in byte 8 after initial object address)
+		;3. Keys -> 2 DWORDS for the keys for moving up and down (starting in byte 16 after initial object address)
+		;4. info -> the image of the character (starting in byte 24 after initial object address)
+
+		ADD [ECX], EDX
+
+		MOV EDX, [ECX + 12]
+
+		ADD [ECX + 4], EDX
+
+		POPA
+
+		RET
+	moveObject ENDP
+
+	moveWithKeys PROC adrObj:DWORD
+
+		PUSHA
+
+		MOV ECX, adrObj
+
+		MOV EDX, [ECX + 16]
+
+		INVOKE GetAsyncKeyState, EDX
+		CMP AX, 0
+		JNE goUp
+
+		MOV ECX, adrObj
+
+		MOV EDX, [ECX + 20]
+
+		INVOKE GetAsyncKeyState, EDX
+		CMP AX, 0
+		JNE goDown
+
+		jmp endIt
+
+		goUp:
+
+			MOV EAX, -1
+			
+			MOV ECX, adrObj
+
+			MOV [ECX + 12], EAX
+
+		JMP endIt
+
+		goDown:
+
+			MOV EAX, 1
+
+			MOV ECX, adrObj    
+
+			MOV [ECX + 12], EAX
+		
+		endIt:
+
+		POPA
+
+		RET
+	moveWithKeys ENDP

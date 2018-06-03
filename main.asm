@@ -35,10 +35,8 @@ INCLUDE mainFuncs.inc
 			
 			INVOKE bgcmp
 
-			INVOKE jeffcmp
-
 			;Call all drawing and updating functions and repeat them infinitly
-
+			
 		JMP loopa
 
 		RET

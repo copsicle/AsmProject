@@ -21,8 +21,6 @@ INCLUDE funcs.inc
 
 		;Open a new drd window
 
-		INVOKE drd_imageLoadFile, OFFSET hddJeff, OFFSET jeff.info
-
 		INVOKE drd_imageLoadFile, OFFSET hddBG, OFFSET BG1.info
 
 		INVOKE drd_imageLoadFile, OFFSET hddBG, OFFSET BG2.info
@@ -35,17 +33,9 @@ INCLUDE funcs.inc
 
 		;Load all the images to memory
 
-		INVOKE drd_imageSetTransparent, OFFSET jeff.info, white
-
 		INVOKE drd_imageSetTransparent, OFFSET ball.info, black
 
 		;Set the background color of pictures to transparent
-
-		MOV EAX, speed
-
-		MOV EBX, speed
-
-		;Putting initial speed values into registers
 
 		RET
 	init ENDP
@@ -73,14 +63,16 @@ INCLUDE funcs.inc
 		POPA
 
 		;Pop all registers to prevent drd from being evil
-		
-		ADD jeff.pos.x, EAX
-
-		ADD jeff.pos.y, EBX
-
-		;Add register values to position of character
 
 		INVOKE pauseGame
+
+		INVOKE moveWithKeys, OFFSET player1
+
+		INVOKE moveWithKeys, OFFSET player2
+
+		INVOKE moveObject, OFFSET player1
+
+		INVOKE moveObject, OFFSET player2
 
 		RET
 	update ENDP
@@ -96,8 +88,6 @@ INCLUDE funcs.inc
 		INVOKE drd_imageDraw, OFFSET BG1.info, BG1.pos.x, BG1.pos.y
 
 		INVOKE drd_imageDraw, OFFSET BG2.info, BG2.pos.x, BG2.pos.y
-
-		INVOKE drd_imageDraw, OFFSET jeff.info, jeff.pos.x, jeff.pos.y
 
 		INVOKE drd_imageDraw, OFFSET ball.info, ball.pos.x, ball.pos.y
 

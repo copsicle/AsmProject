@@ -58,9 +58,6 @@
 
 		Up DWORD ?
 		Down DWORD ?
-		KeyW DWORD ?
-		KeyS DWORD ?
-		Space DWORD ?
 
 	Keys ENDS
 
@@ -78,11 +75,11 @@
 
 	;Struct for characters - kinda like an object
 
-	jeff Character<<0,0>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
-	BG1 Character<<0,0>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
-	BG2 Character<<-xlen,0>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
-	player1 Character<<playerW * 2, playerMid>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
-	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
-	ball Character<<ballMidX, ballMidY>,<0,0>,<upArrow, downArrow, WKEY, SKEY, space>>
+	jeff Character<<0,0>,<0,0>,<upArrow, downArrow>>
+	BG1 Character<<0,0>,<0,0>,<upArrow, downArrow>>
+	BG2 Character<<-xlen,0>,<0,0>,<upArrow, downArrow>>
+	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
+	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
+	ball Character<<ballMidX, ballMidY>,<0,0>,<upArrow, downArrow>>
 
 	;Defining objects for the pictures we need to move

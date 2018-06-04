@@ -4,6 +4,7 @@
 	xlen EQU 1280
 	ylen EQU 720
 	winMode EQU 0
+	bgSpeed EQU 1
 
 	;Window info
 
@@ -11,20 +12,12 @@
 	white EQU 0FFFFFFFFh
 
 	;colors
-	
-	jeffBorder EQU 300
-	speed EQU 1
-
-	;Jeff constants
-
-	xhitbox EQU xlen - jeffBorder
-	yhitbox EQU ylen - jeffBorder
-
-	;Hitboxes for collisions
 
 	playerW EQU 20
 	playerH EQU 160
-	playerMid EQU (ylen - playerH) / 2
+	xhitbox EQU xlen - playerW
+	yhitbox EQU ylen - playerH
+	playerMid EQU yhitbox / 2
 
 	;Pong player info
 	
@@ -41,7 +34,6 @@
 	space EQU VK_SPACE
 	upArrow EQU VK_UP
 	downArrow EQU VK_DOWN
-	keypress EQU 1000h
 
 	;Keyboard key constants
 
@@ -53,6 +45,8 @@
 	hddBall BYTE "ball.bmp", 0
 
 	;Saves locations of images to memory as bytes
+	
+	blockPlayer BYTE 0, 0
 
 	Keys STRUCT
 
@@ -76,8 +70,8 @@
 	;Struct for characters - kinda like an object
 
 	jeff Character<<0,0>,<0,0>,<upArrow, downArrow>>
-	BG1 Character<<0,0>,<0,0>,<upArrow, downArrow>>
-	BG2 Character<<-xlen,0>,<0,0>,<upArrow, downArrow>>
+	BG1 Character<<0,0>,<bgSpeed,0>,<upArrow, downArrow>>
+	BG2 Character<<-xlen,0>,<bgSpeed,0>,<upArrow, downArrow>>
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
 	ball Character<<ballMidX, ballMidY>,<0,0>,<upArrow, downArrow>>

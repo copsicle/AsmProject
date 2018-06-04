@@ -32,8 +32,6 @@ INCLUDE mainFuncs.inc
 			INVOKE draw
 
 			INVOKE update
-			
-			INVOKE bgcmp
 
 			;Call all drawing and updating functions and repeat them infinitly
 			

@@ -56,7 +56,7 @@ INCLUDE funcs.inc
 
 		;Clear back buffer
 
-		INVOKE Sleep, 3
+		;INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
 
@@ -70,10 +70,25 @@ INCLUDE funcs.inc
 
 		INVOKE moveWithKeys, OFFSET player2
 
+		INVOKE playerBorder, OFFSET player1
+
+		INVOKE playerBorder, OFFSET player2
+
 		INVOKE moveObject, OFFSET player1
 
 		INVOKE moveObject, OFFSET player2
 
+		INVOKE moveObject, OFFSET BG1
+
+		INVOKE moveObject, OFFSET BG2
+
+		INVOKE stopMovement, OFFSET player1
+
+		INVOKE stopMovement, OFFSET player2
+
+		INVOKE bgcmp, OFFSET BG1
+
+		INVOKE bgcmp, OFFSET BG2
 		RET
 	update ENDP
 

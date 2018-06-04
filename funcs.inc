@@ -24,7 +24,7 @@
 
 	bgcmp PROC adrObj:DWORD
 
-	;Start of background moving and comparing function
+	;Start of background comparing function
 
 		PUSHA
 
@@ -32,12 +32,8 @@
 
 		MOV EBX, xlen
 
-		;Increases background X position by one to create scrolling effect
-
 		CMP [EAX], EBX
 		JE bgmv
-
-		;Checks if any of these conditions are met and if so jumps to the correct tag
 
 		POPA
 
@@ -48,9 +44,6 @@
 			MOV [EAX], EBX
 			POPA
 		RET
-
-		;If the first background exits out of the frame it's moved to the left
-
 	bgcmp ENDP
 
 	pauseGame PROC

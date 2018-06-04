@@ -39,8 +39,7 @@
 
 .DATA
 
-	hddJeff BYTE "jeff.bmp", 0
-	hddBG BYTE "bg2.bmp", 0
+	hddBG BYTE "bg3.bmp", 0
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
 
@@ -57,23 +56,24 @@
 
 	Character STRUCT
 
-		pos POINT<>
+		pos POINT<>;0->4 x 4->8 y
 
-		drc POINT<>
+		drc POINT<>;8->12 x 12->16 y
 
-		button Keys<>
+		button Keys<>;16->20 upKey 20->24 downKey
 
-		info Img<>
+		info Img<>;24->idk image
 
 	Character ENDS
 
 	;Struct for characters - kinda like an object
 
-	jeff Character<<0,0>,<0,0>,<upArrow, downArrow>>
 	BG1 Character<<0,0>,<bgSpeed,0>,<upArrow, downArrow>>
 	BG2 Character<<-xlen,0>,<bgSpeed,0>,<upArrow, downArrow>>
+
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
+
 	ball Character<<ballMidX, ballMidY>,<0,0>,<upArrow, downArrow>>
 
 	;Defining objects for the pictures we need to move

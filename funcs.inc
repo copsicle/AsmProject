@@ -241,3 +241,54 @@
 
 		RET
 	playerBorder ENDP
+
+	ballHitting PROC playerObj:DWORD, ballObj:DWORD
+
+		PUSHA
+
+		MOV EAX, playerObj
+
+		MOV EBX, ballObj
+
+		MOV ECX, [EAX] + playerW
+
+		CMP [EBX], ECX
+		JE p1col
+
+		MOV EDX, [EBX] + ballBorder
+
+		CMP [EAX],EDX
+		JE p2col
+
+		JMP endIt
+
+		p1col:
+			MOV ECX, [EAX + 4] - (ballBorder / 3)
+			CMP [EBX + 4],ECX
+			JGE y1isgood
+			JMP endIt
+			y1isgood:
+				MOV EDX, [EAX + 4] + playerH + (ballBorder / 3)
+				CMP [EBX + 4], EDX
+				JLE finalSolution
+				JMP endIt
+		p2col:
+			MOV ECX, [EAX + 4] - (ballBorder / 3)
+			CMP [EBX + 4], ECX
+			JGE y2isgood
+			JMP endIt
+			y2isgood:
+				MOV EDX, [EAX + 4] + playerH + (ballBorder / 3)
+				CMP [EBX + 4], EDX
+				JLE finalSolution
+				JMP endIt
+		finalSolution:
+			MOV ECX, [EBX + 8]
+			NEG ECX
+			MOV [EBX + 8], ECX
+		endIt:
+
+		POPA
+
+		RET
+	ballHitting ENDP

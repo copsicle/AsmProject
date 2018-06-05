@@ -74,6 +74,6 @@
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
 
-	ball Character<<ballMidX, ballMidY>,<0,0>,<upArrow, downArrow>>
+	ball Character<<ballMidX, ballMidY>,<1,0>,<upArrow, downArrow>>
 
 	;Defining objects for the pictures we need to move

@@ -56,7 +56,7 @@ INCLUDE funcs.inc
 
 		;Clear back buffer
 
-		;INVOKE Sleep, 3
+		INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
 
@@ -89,6 +89,11 @@ INCLUDE funcs.inc
 		INVOKE bgcmp, OFFSET BG1
 
 		INVOKE bgcmp, OFFSET BG2
+
+		INVOKE ballHitting, OFFSET player1, OFFSET ball
+
+		INVOKE ballHitting, OFFSET player2, OFFSET ball
+
 		RET
 	update ENDP
 

@@ -338,12 +338,18 @@
 	scoring ENDP
 
 	endGame PROC
+		PUSHA
 		CMP p1Score, endScore
 		JE endIt
 		CMP p2Score, endScore
 		JE endIt
+		INVOKE GetAsyncKeyState, escape
+		CMP AX, 0
+		JNE endIt
+		POPA
 		RET
 		endIt:
 			INC endTheGame
+			POPA
 		RET
 	endGame ENDP

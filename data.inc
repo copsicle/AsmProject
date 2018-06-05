@@ -36,6 +36,7 @@
 	space EQU VK_SPACE
 	upArrow EQU VK_UP
 	downArrow EQU VK_DOWN
+	escape EQU VK_ESCAPE
 
 	;Keyboard key constants
 

@@ -25,6 +25,7 @@
 	ballMidX EQU (xlen - ballBorder) / 2
 	ballMidY EQU (ylen - ballBorder) / 2
 	ballSpeed EQU 2
+	endScore EQU 5
 
 	;Pong ball info
 
@@ -46,7 +47,10 @@
 
 	;Saves locations of images to memory as bytes
 	
-	blockPlayer BYTE 0, 0
+	p1Score BYTE 0, 0
+	p2Score BYTE 0, 0
+	pScored BYTE 1, 0
+	endTheGame BYTE 0, 0
 
 	Keys STRUCT
 

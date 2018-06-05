@@ -31,11 +31,26 @@ INCLUDE mainFuncs.inc
 
 			INVOKE draw
 
+			CMP pScored, 1
+			JE startTime
+			JMP after
+			startTime:
+				INVOKE Sleep, 1000
+				DEC pScored
+			after:
+
 			INVOKE update
+
+			INVOKE scoring, OFFSET ball
+
+			CMP endTheGame, 1
+			JE endItAll
 
 			;Call all drawing and updating functions and repeat them infinitly
 			
 		JMP loopa
+
+		endItAll:
 
 		RET
 	main ENDP

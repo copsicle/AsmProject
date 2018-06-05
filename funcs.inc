@@ -310,3 +310,40 @@
 
 		RET
 	ballToWall ENDP
+
+	scoring PROC adrObj:DWORD
+
+		PUSHA
+		MOV EAX, adrObj
+		MOV EBX, 0
+		MOV ECX, xlen
+		SUB ECX, ballBorder
+		CMP [EAX], ECX
+		JE scoreP1
+		CMP [EAX], EBX
+		JE scoreP2
+		JMP plsGo
+		scoreP1:
+			INC p1Score
+			INC pScored
+			INVOKE startPos
+			JMP plsGo
+		scoreP2:
+			INC p2Score
+			INC pScored
+			INVOKE startPos
+		plsGo:
+		POPA
+		RET
+	scoring ENDP
+
+	endGame PROC
+		CMP p1Score, endScore
+		JE endIt
+		CMP p2Score, endScore
+		JE endIt
+		RET
+		endIt:
+			INC endTheGame
+		RET
+	endGame ENDP

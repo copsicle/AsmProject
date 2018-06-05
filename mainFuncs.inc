@@ -98,6 +98,8 @@ INCLUDE funcs.inc
 
 		INVOKE ballToWall, OFFSET ball
 
+		INVOKE endGame
+
 		RET
 	update ENDP
 

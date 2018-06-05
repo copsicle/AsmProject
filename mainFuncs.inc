@@ -66,6 +66,8 @@ INCLUDE funcs.inc
 
 		INVOKE pauseGame
 
+		INVOKE restartGame
+
 		INVOKE moveWithKeys, OFFSET player1
 
 		INVOKE moveWithKeys, OFFSET player2
@@ -88,9 +90,9 @@ INCLUDE funcs.inc
 
 		INVOKE stopMovement, OFFSET player2
 
-		INVOKE bgcmp, OFFSET BG1
+		INVOKE bgcmp, OFFSET BG1, OFFSET ball
 
-		INVOKE bgcmp, OFFSET BG2
+		INVOKE bgcmp, OFFSET BG2, OFFSET ball
 
 		INVOKE ballHitting, OFFSET player1, OFFSET ball
 

@@ -74,8 +74,8 @@
 
 	;Struct for characters - kinda like an object
 
-	BG1 Character<<0,0>,<bgSpeed,0>,<upArrow, downArrow>>
-	BG2 Character<<-xlen,0>,<bgSpeed,0>,<upArrow, downArrow>>
+	BG1 Character<<(xlen / 2),0>,<0,0>,<upArrow, downArrow>>
+	BG2 Character<<(-xlen / 2),0>,<0,0>,<upArrow, downArrow>>
 
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>

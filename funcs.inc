@@ -22,7 +22,7 @@
 		RET
 	startPos ENDP
 
-	bgcmp PROC adrObj:DWORD
+	bgcmp PROC adrObj:DWORD, ballObj:DWORD
 
 	;Start of background comparing function
 
@@ -30,8 +30,17 @@
 
 		MOV EAX, adrObj
 
+		MOV ECX, ballObj
+
+		MOV [EAX + 8], [ECX + 8]
+
 		MOV EBX, xlen
 
+		CMP [EAX], EBX
+		JE bgmv
+
+		NEG EBX
+		
 		CMP [EAX], EBX
 		JE bgmv
 
@@ -353,3 +362,19 @@
 			POPA
 		RET
 	endGame ENDP
+
+	restartGame PROC
+		PUSHA
+		INVOKE GetAsyncKeyState, RKEY
+		CMP AX, 0
+		JNE ree
+		JMP goNow
+		ree:
+			INC pScored
+			MOV p1Score, 0
+			MOV p2Score, 0
+			INVOKE startPos
+		goNow:
+		POPA
+		RET
+	restartGame ENDP

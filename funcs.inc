@@ -32,7 +32,9 @@
 
 		MOV ECX, ballObj
 
-		MOV [EAX + 8], [ECX + 8]
+		MOV ECX, [ECX + 8]
+
+		MOV [EAX + 8], ECX
 
 		MOV EBX, xlen
 
@@ -101,7 +103,7 @@
 
 		unPauseGame:
 		
-		INVOKE Sleep,500
+		INVOKE Sleep, 100
 
 		;Unpressing timeout
 		
@@ -274,7 +276,7 @@
 				MOV EDX, [EAX + 4]
 				ADD EDX, (playerH + (ballBorder / 3))
 				CMP [EBX + 4], EDX
-				JLE finalSolution
+				JLE p1finalSolution
 				JMP endIt
 		p2col:
 			MOV ECX, [EAX + 4]
@@ -287,9 +289,20 @@
 				ADD EDX, playerH
 				ADD EDX, (ballBorder / 3)
 				CMP [EBX + 4], EDX
-				JLE finalSolution
+				JLE p2finalSolution
 				JMP endIt
-		finalSolution:
+		p1finalSolution:
+			MOV EDX, 0
+			CMP [EBX + 8], EDX
+			JG endIt
+			MOV ECX, [EBX + 8]
+			NEG ECX
+			MOV [EBX + 8], ECX
+			JMP endIt
+		p2finalSolution:
+			MOV EDX, 0
+			CMP [EBX + 8], EDX
+			JL endIt
 			MOV ECX, [EBX + 8]
 			NEG ECX
 			MOV [EBX + 8], ECX

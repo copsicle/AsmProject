@@ -96,6 +96,8 @@ INCLUDE funcs.inc
 
 		INVOKE ballHitting, OFFSET player2, OFFSET ball
 
+		INVOKE ballToWall, OFFSET ball
+
 		RET
 	update ENDP
 

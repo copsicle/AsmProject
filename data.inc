@@ -24,6 +24,7 @@
 	ballBorder EQU 20
 	ballMidX EQU (xlen - ballBorder) / 2
 	ballMidY EQU (ylen - ballBorder) / 2
+	ballSpeed EQU 2
 
 	;Pong ball info
 
@@ -74,6 +75,6 @@
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
 
-	ball Character<<ballMidX, ballMidY>,<1,0>,<upArrow, downArrow>>
+	ball Character<<ballMidX, ballMidY>,<ballSpeed,ballSpeed>,<upArrow, downArrow>>
 
 	;Defining objects for the pictures we need to move

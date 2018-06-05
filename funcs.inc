@@ -288,3 +288,25 @@
 		POPA
 		RET
 	ballHitting ENDP
+
+	ballToWall PROC adrObj:DWORD
+
+		PUSHA
+		MOV EAX, adrObj
+		MOV EDX, 0
+		CMP [EAX + 4], EDX
+		JE hitwall
+		MOV EBX, ylen
+		SUB EBX, ballBorder
+		CMP [EAX + 4], EBX
+		JE hitwall
+		JMP goAway
+		hitwall:
+			MOV ECX, [EAX + 12]
+			NEG ECX
+			MOV [EAX + 12], ECX
+		goAway:
+		POPA
+
+		RET
+	ballToWall ENDP

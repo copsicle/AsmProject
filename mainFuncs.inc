@@ -78,6 +78,8 @@ INCLUDE funcs.inc
 
 		INVOKE moveObject, OFFSET player2
 
+		INVOKE moveObject, OFFSET ball
+
 		INVOKE moveObject, OFFSET BG1
 
 		INVOKE moveObject, OFFSET BG2

@@ -203,9 +203,9 @@
 
 		MOV EDX, 0
 
-		MOV EAX, yhitbox ;yhitbox is the length of the windows minus the length of the player image
+		MOV EAX, yhitbox
 
-		CMP [ECX + 4], EDX ;ECX + 4 is where the y position of the player is stored in the memory
+		CMP [ECX + 4], EDX
 		JE xdontMove
 
 		CMP [ECX + 4], EAX
@@ -215,7 +215,7 @@
 
 		xdontMove:
 
-			INVOKE GetAsyncKeyState, [ECX + 16] ;ECX + 16 is the upward moving button for the player
+			INVOKE GetAsyncKeyState, [ECX + 16]
 			CMP AX, 0
 			JE theEnd
 
@@ -223,7 +223,7 @@
 
 		ydontMove:
 
-			INVOKE GetAsyncKeyState, [ECX + 20] ;ECX + 16 is the same but downwards
+			INVOKE GetAsyncKeyState, [ECX + 20]
 			CMP AX, 0
 			JE theEnd
 
@@ -233,7 +233,7 @@
 
 			MOV ECX, adrObj
 
-			MOV [ECX + 12], EDX ;ECX + 12 is the y speeed of the player
+			MOV [ECX + 12], EDX
 			
 		theEnd:
 
@@ -243,42 +243,40 @@
 	playerBorder ENDP
 
 	ballHitting PROC playerObj:DWORD, ballObj:DWORD
-
 		PUSHA
-
 		MOV EAX, playerObj
-
 		MOV EBX, ballObj
-
-		MOV ECX, [EAX] + playerW
-
+		MOV ECX, [EAX]
+		ADD ECX, playerW
 		CMP [EBX], ECX
 		JE p1col
-
-		MOV EDX, [EBX] + ballBorder
-
+		MOV EDX, [EBX]
+		ADD EDX, ballBorder
 		CMP [EAX],EDX
 		JE p2col
-
 		JMP endIt
-
 		p1col:
-			MOV ECX, [EAX + 4] - (ballBorder / 3)
+			MOV ECX, [EAX + 4]
+			SUB ECX, (ballBorder / 3)
 			CMP [EBX + 4],ECX
 			JGE y1isgood
 			JMP endIt
 			y1isgood:
-				MOV EDX, [EAX + 4] + playerH + (ballBorder / 3)
+				MOV EDX, [EAX + 4]
+				ADD EDX, (playerH + (ballBorder / 3))
 				CMP [EBX + 4], EDX
 				JLE finalSolution
 				JMP endIt
 		p2col:
-			MOV ECX, [EAX + 4] - (ballBorder / 3)
+			MOV ECX, [EAX + 4]
+			SUB ECX, (ballBorder / 3)
 			CMP [EBX + 4], ECX
 			JGE y2isgood
 			JMP endIt
 			y2isgood:
-				MOV EDX, [EAX + 4] + playerH + (ballBorder / 3)
+				MOV EDX, [EAX + 4]
+				ADD EDX, playerH
+				ADD EDX, (ballBorder / 3)
 				CMP [EBX + 4], EDX
 				JLE finalSolution
 				JMP endIt
@@ -287,8 +285,6 @@
 			NEG ECX
 			MOV [EBX + 8], ECX
 		endIt:
-
 		POPA
-
 		RET
 	ballHitting ENDP

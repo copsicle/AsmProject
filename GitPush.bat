@@ -3,6 +3,8 @@ git add *.inc
 git add *.asm
 git add *.bat
 git add *.bmp
+git add *.wav
+git add *.txt
 git add README.md
 @echo on
 git status

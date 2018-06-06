@@ -74,7 +74,7 @@ INCLUDE funcs.inc
 
 		INVOKE pauseGame
 
-		INVOKE restartGame
+		INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2
 
 		INVOKE moveWithKeys, OFFSET player1
 

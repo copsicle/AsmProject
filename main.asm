@@ -52,6 +52,8 @@ INCLUDE mainFuncs.inc
 
 		endItAll:
 
+		INVOKE ExitProcess, 0
+
 		RET
 	main ENDP
 

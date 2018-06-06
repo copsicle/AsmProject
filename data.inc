@@ -25,7 +25,6 @@
 	ballMidX EQU (xlen - ballBorder) / 2
 	ballMidY EQU (ylen - ballBorder) / 2
 	ballSpeed EQU 2
-	endScore EQU 5
 
 	;Pong ball info
 
@@ -39,6 +38,11 @@
 	escape EQU VK_ESCAPE
 
 	;Keyboard key constants
+
+	endScore EQU 5
+	scoreBorder EQU 50
+	p2ScorePos EQU (xlen - scoreBorder)
+
 
 .DATA
 
@@ -74,12 +78,15 @@
 
 	;Struct for characters - kinda like an object
 
-	BG1 Character<<(xlen / 2),0>,<0,0>,<upArrow, downArrow>>
-	BG2 Character<<(-xlen / 2),0>,<0,0>,<upArrow, downArrow>>
+	BG1 Character<<(xlen / 2),0>,<0,0>,<upArrow, downArrow>,<>>
+	BG2 Character<<(-xlen / 2),0>,<0,0>,<upArrow, downArrow>,<>>
 
-	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>>
-	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>>
+	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>,<>>
+	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>,<>>
 
-	ball Character<<ballMidX, ballMidY>,<ballSpeed,ballSpeed>,<upArrow, downArrow>>
+	ball Character<<ballMidX, ballMidY>,<ballSpeed,ballSpeed>,<>>
+
+	scoreImgP1 Character<<0,0>,<0,0>,<>,<>>
+	scoreImgP2 Character<<p2ScorePos,0>,<0,0>,<>,<>>
 
 	;Defining objects for the pictures we need to move

@@ -333,29 +333,32 @@
 		RET
 	ballToWall ENDP
 
-	scoring PROC adrObj:DWORD
+	scoring PROC ballObj:DWORD, p1Obj:DWORD, p2Obj:DWORD
 
 		PUSHA
-		MOV EAX, adrObj
+		MOV EAX, ballObj
 		MOV EBX, 0
 		MOV ECX, xlen
 		SUB ECX, ballBorder
+		MOV EDX, scoreBorder
 		CMP [EAX], ECX
 		JE scoreP1
 		CMP [EAX], EBX
 		JE scoreP2
 		JMP plsGo
 		scoreP1:
+			MOV EAX, p1Obj
+			ADD [EAX + 44], EDX
 			INC p1Score
 			INC pScored
 			INVOKE startPos
-			ADD p1XImg, 50
 			JMP plsGo
 		scoreP2:
+			MOV EAX, p2Obj
+			ADD [EAX + 44], EDX
 			INC p2Score
 			INC pScored
 			INVOKE startPos
-			ADD p2XImg, 50
 		plsGo:
 		POPA
 		RET

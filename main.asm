@@ -41,7 +41,7 @@ INCLUDE mainFuncs.inc
 
 			INVOKE update
 
-			INVOKE scoring, OFFSET ball
+			INVOKE scoring, OFFSET ball, OFFSET scoreImgP1, OFFSET scoreImgP2
 
 			CMP endTheGame, 1
 			JE endItAll

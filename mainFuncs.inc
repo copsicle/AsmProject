@@ -131,9 +131,9 @@ INCLUDE funcs.inc
 
 		INVOKE drd_imageDraw, OFFSET player2.info, player2.pos.x, player2.pos.y
 
-		;INVOKE drd_imageDrawCrop, OFFSET scoreImgP1.info, scoreImgP1.pos.x, scoreImgP1.pos.y, OFFSET p1XImg, 0, OFFSET p1XSrc, scoreBorder
+		INVOKE drd_imageDrawCrop, OFFSET scoreImgP1.info, scoreImgP1.pos.x, scoreImgP1.pos.y, scoreImgP1.src.x, scoreImgP1.src.y, scoreImgP1.srcend.x, scoreImgP1.srcend.y
 
-		;INVOKE drd_imageDrawCrop, OFFSET scoreImgP2.info, scoreImgP1.pos.x, scoreImgP1.pos.y, OFFSET p2XImg, 0, OFFSET p2XSrc, scoreBorder
+		INVOKE drd_imageDrawCrop, OFFSET scoreImgP2.info, scoreImgP2.pos.x, scoreImgP2.pos.y, scoreImgP2.src.x, scoreImgP2.src.y, scoreImgP2.srcend.x, scoreImgP2.srcend.y
 
 		;Draws all the images using the image info in the struct and the positions
 

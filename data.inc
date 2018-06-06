@@ -41,7 +41,7 @@
 
 	endScore EQU 5
 	scoreBorder EQU 50
-	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 2))
+	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 3))
 	p2ScorePos EQU ((xlen / 2) + (scoreBorder * 2))
 
 
@@ -59,12 +59,6 @@
 	pScored BYTE 1, 0
 	endTheGame BYTE 0, 0
 
-	p1XImg DWORD 0, 0
-	p1XSrc DWORD (p1XImg + scoreBorder), 0
-
-	p2XImg DWORD 0, 0
-	p2XSrc DWORD (p2XImg + scoreBorder), 0
-
 	Keys STRUCT
 
 		Up DWORD ?
@@ -80,21 +74,25 @@
 
 		button Keys<>;16->20 upKey 20->24 downKey
 
-		info Img<>;24->idk image
+		info Img<>;24->44 image
+
+		src POINT<>;44->48 x 48->52 y
+
+		srcend POINT<>;52->56x 56->60 y
 
 	Character ENDS
 
 	;Struct for characters - kinda like an object
 
-	BG1 Character<<(xlen / 2),0>,<0,0>,<upArrow, downArrow>,<>>
-	BG2 Character<<(-xlen / 2),0>,<0,0>,<upArrow, downArrow>,<>>
+	BG1 Character<<(xlen / 2), 0>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
+	BG2 Character<<(-xlen / 2), 0>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
 
-	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>,<>>
-	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>,<>>
+	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>,<>,<>,<>>
+	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
 
-	ball Character<<ballMidX, ballMidY>,<ballSpeed,ballSpeed>,<>>
+	ball Character<<ballMidX, ballMidY>,<ballSpeed, ballSpeed>,<>,<>,<>>
 
-	scoreImgP1 Character<<p1ScorePos,0>,<0,0>,<>,<>>
-	scoreImgP2 Character<<p2ScorePos,0>,<0,0>,<>,<>>
+	scoreImgP1 Character<<p1ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
+	scoreImgP2 Character<<p2ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 
 	;Defining objects for the pictures we need to move

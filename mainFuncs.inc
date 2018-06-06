@@ -31,9 +31,17 @@ INCLUDE funcs.inc
 
 		INVOKE drd_imageLoadFile, OFFSET hddBall, OFFSET ball.info
 
+		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP1.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP2.info
+
 		;Load all the images to memory
 
 		INVOKE drd_imageSetTransparent, OFFSET ball.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET scoreImgP1.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET scoreImgP2.info, black
 
 		;Set the background color of pictures to transparent
 
@@ -122,6 +130,10 @@ INCLUDE funcs.inc
 		INVOKE drd_imageDraw, OFFSET player1.info, player1.pos.x, player1.pos.y
 
 		INVOKE drd_imageDraw, OFFSET player2.info, player2.pos.x, player2.pos.y
+
+		;INVOKE drd_imageDrawCrop, OFFSET scoreImgP1.info, scoreImgP1.pos.x, scoreImgP1.pos.y, OFFSET p1XImg, 0, OFFSET p1XSrc, scoreBorder
+
+		;INVOKE drd_imageDrawCrop, OFFSET scoreImgP2.info, scoreImgP1.pos.x, scoreImgP1.pos.y, OFFSET p2XImg, 0, OFFSET p2XSrc, scoreBorder
 
 		;Draws all the images using the image info in the struct and the positions
 

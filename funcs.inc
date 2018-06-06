@@ -349,11 +349,13 @@
 			INC p1Score
 			INC pScored
 			INVOKE startPos
+			ADD p1XImg, 50
 			JMP plsGo
 		scoreP2:
 			INC p2Score
 			INC pScored
 			INVOKE startPos
+			ADD p2XImg, 50
 		plsGo:
 		POPA
 		RET

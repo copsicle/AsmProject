@@ -41,7 +41,8 @@
 
 	endScore EQU 5
 	scoreBorder EQU 50
-	p2ScorePos EQU (xlen - scoreBorder)
+	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 2))
+	p2ScorePos EQU ((xlen / 2) + (scoreBorder * 2))
 
 
 .DATA
@@ -49,6 +50,7 @@
 	hddBG BYTE "bg3.bmp", 0
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
+	hddScores BYTE "score.bmp", 0
 
 	;Saves locations of images to memory as bytes
 	
@@ -56,6 +58,12 @@
 	p2Score BYTE 0, 0
 	pScored BYTE 1, 0
 	endTheGame BYTE 0, 0
+
+	p1XImg DWORD 0, 0
+	p1XSrc DWORD (p1XImg + scoreBorder), 0
+
+	p2XImg DWORD 0, 0
+	p2XSrc DWORD (p2XImg + scoreBorder), 0
 
 	Keys STRUCT
 
@@ -86,7 +94,7 @@
 
 	ball Character<<ballMidX, ballMidY>,<ballSpeed,ballSpeed>,<>>
 
-	scoreImgP1 Character<<0,0>,<0,0>,<>,<>>
+	scoreImgP1 Character<<p1ScorePos,0>,<0,0>,<>,<>>
 	scoreImgP2 Character<<p2ScorePos,0>,<0,0>,<>,<>>
 
 	;Defining objects for the pictures we need to move

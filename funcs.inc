@@ -408,7 +408,7 @@
 		RET
 	endGame ENDP
 
-	restartGame PROC p1:DWORD, p2:DWORD
+	restartGame PROC p1:DWORD, p2:DWORD, p12:DWORD, p22:DWORD
 		PUSHA
 		INVOKE GetAsyncKeyState, RKEY
 		CMP AX, 0
@@ -421,6 +421,10 @@
 			MOV EAX, p1
 			MOV EBX, p2
 			MOV ECX, 0
+			MOV [EAX + 44], ECX
+			MOV [EBX + 44], ECX
+			MOV EAX, p12
+			MOV EBX, p22
 			MOV [EAX + 44], ECX
 			MOV [EBX + 44], ECX
 			INVOKE startPos

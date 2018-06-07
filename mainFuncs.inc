@@ -72,7 +72,7 @@ INCLUDE funcs.inc
 
 		;Clear back buffer
 
-		INVOKE Sleep, 3
+		;INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
 

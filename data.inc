@@ -39,7 +39,7 @@
 
 	;Keyboard key constants
 
-	endScore EQU 20
+	endScore EQU 100
 	scoreBorder EQU 50
 	spacing EQU 10
 	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 3))

@@ -75,7 +75,7 @@
 
 		doIt:
 		
-		INVOKE Sleep, 500
+		INVOKE Sleep, 200
 
 		;Timeout for the user to release the key
 
@@ -103,7 +103,7 @@
 
 		unPauseGame:
 		
-		INVOKE Sleep, 100
+		INVOKE Sleep, 200
 
 		;Unpressing timeout
 		

@@ -34,6 +34,10 @@ INCLUDE funcs.inc
 		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP1.info
 
 		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP2.info
+		
+		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP12.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP22.info
 
 		;Load all the images to memory
 
@@ -42,6 +46,10 @@ INCLUDE funcs.inc
 		INVOKE drd_imageSetTransparent, OFFSET scoreImgP1.info, black
 
 		INVOKE drd_imageSetTransparent, OFFSET scoreImgP2.info, black
+		
+		INVOKE drd_imageSetTransparent, OFFSET scoreImgP12.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET scoreImgP22.info, black
 
 		;Set the background color of pictures to transparent
 
@@ -134,6 +142,10 @@ INCLUDE funcs.inc
 		INVOKE drd_imageDrawCrop, OFFSET scoreImgP1.info, scoreImgP1.pos.x, scoreImgP1.pos.y, scoreImgP1.src.x, scoreImgP1.src.y, scoreImgP1.srcend.x, scoreImgP1.srcend.y
 
 		INVOKE drd_imageDrawCrop, OFFSET scoreImgP2.info, scoreImgP2.pos.x, scoreImgP2.pos.y, scoreImgP2.src.x, scoreImgP2.src.y, scoreImgP2.srcend.x, scoreImgP2.srcend.y
+
+		INVOKE drd_imageDrawCrop, OFFSET scoreImgP12.info, scoreImgP12.pos.x, scoreImgP12.pos.y, scoreImgP12.src.x, scoreImgP12.src.y, scoreImgP12.srcend.x, scoreImgP12.srcend.y
+
+		INVOKE drd_imageDrawCrop, OFFSET scoreImgP22.info, scoreImgP22.pos.x, scoreImgP22.pos.y, scoreImgP22.src.x, scoreImgP22.src.y, scoreImgP22.srcend.x, scoreImgP22.srcend.y
 
 		;Draws all the images using the image info in the struct and the positions
 

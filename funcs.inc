@@ -333,32 +333,59 @@
 		RET
 	ballToWall ENDP
 
-	scoring PROC ballObj:DWORD, p1Obj:DWORD, p2Obj:DWORD
+	scoring PROC ballObj:DWORD, p1Obj:DWORD, p2Obj:DWORD, p1Obj2:DWORD, p2Obj2:DWORD
 
 		PUSHA
 		MOV EAX, ballObj
 		MOV EBX, 0
 		MOV ECX, xlen
 		SUB ECX, ballBorder
-		MOV EDX, scoreBorder
 		CMP [EAX], ECX
 		JE scoreP1
 		CMP [EAX], EBX
 		JE scoreP2
 		JMP plsGo
 		scoreP1:
-			MOV EAX, p1Obj
-			ADD [EAX + 44], EDX
 			INC p1Score
 			INC pScored
 			INVOKE startPos
+			MOV ECX, p1Obj
+			MOV EAX, p1Score
+			MOV EBX, 10
+			MOV EDX, 0
+			DIV EBX
+			CMP EDX, 0
+			JE addTenP1
+			MOV EDX, scoreBorder
+			ADD [ECX + 44], EDX
 			JMP plsGo
 		scoreP2:
-			MOV EAX, p2Obj
-			ADD [EAX + 44], EDX
 			INC p2Score
 			INC pScored
 			INVOKE startPos
+			MOV ECX, p2Obj
+			MOV EAX, p2Score
+			MOV EBX, 10
+			MOV EDX, 0
+			DIV EBX
+			CMP EDX, 0
+			JE addTenP2
+			MOV EDX, scoreBorder
+			ADD [ECX + 44], EDX
+			JMP plsGo
+		addTenP1:
+			MOV EAX, p1Obj2
+			MOV EBX, scoreBorder
+			MOV EDX, 0
+			MOV [ECX + 44], EDX
+			ADD [EAX + 44], EBX
+			JMP plsGo
+		addTenP2:
+			MOV EAX, p2Obj2
+			MOV EBX, scoreBorder
+			MOV EDX, 0
+			MOV [ECX + 44], EDX
+			ADD [EAX + 44], EBX
 		plsGo:
 		POPA
 		RET

@@ -39,10 +39,13 @@
 
 	;Keyboard key constants
 
-	endScore EQU 5
+	endScore EQU 20
 	scoreBorder EQU 50
+	spacing EQU 10
 	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 3))
-	p2ScorePos EQU ((xlen / 2) + (scoreBorder * 2))
+	p1ScorePos2 EQU ((xlen / 2) - (scoreBorder * 4) - spacing)
+	p2ScorePos EQU ((xlen / 2) + (scoreBorder * 3) + spacing)
+	p2ScorePos2 EQU ((xlen / 2) + (scoreBorder * 2))
 
 
 .DATA
@@ -54,8 +57,8 @@
 
 	;Saves locations of images to memory as bytes
 	
-	p1Score BYTE 0, 0
-	p2Score BYTE 0, 0
+	p1Score DWORD 0, 0
+	p2Score DWORD 0, 0
 	pScored BYTE 1, 0
 	endTheGame BYTE 0, 0
 
@@ -76,9 +79,9 @@
 
 		info Img<>;24->44 image
 
-		src POINT<>;44->48 x 48->52 y
+		src POINT<>;64->68 x 68->72 y
 
-		srcend POINT<>;52->56x 56->60 y
+		srcend POINT<>;72->76x 76->80 y
 
 	Character ENDS
 
@@ -94,5 +97,7 @@
 
 	scoreImgP1 Character<<p1ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 	scoreImgP2 Character<<p2ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
+	scoreImgP12 Character<<p1ScorePos2, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
+	scoreImgP22 Character<<p2ScorePos2, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 
 	;Defining objects for the pictures we need to move

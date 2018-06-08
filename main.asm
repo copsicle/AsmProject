@@ -13,7 +13,7 @@ INCLUDE mainFuncs.inc
 
 .MODEL flat, STDCALL
 
-;Define memory model to use, doesn't seem to work rn
+;Define memory model to use, masm seems to ignore it though
 
 .CODE
 	
@@ -27,16 +27,26 @@ INCLUDE mainFuncs.inc
 
 		loopa:
 
-		;Start loop 
+		;Start main loop 
+
+		;Call all drawing and updating functions and repeat them infinitly
 
 			INVOKE draw
 
 			CMP pScored, 1
 			JE startTime
+
+			;pScored is increased when a player scores a point
+
 			JMP after
+
 			startTime:
+
 				INVOKE Sleep, 1000
 				DEC pScored
+
+				;Add a timeout before starting the game again and reset pScored value
+
 			after:
 
 			INVOKE update
@@ -46,13 +56,15 @@ INCLUDE mainFuncs.inc
 			CMP endTheGame, 1
 			JE endItAll
 
-			;Call all drawing and updating functions and repeat them infinitly
+			;endTheGame is increased when a player presses escape
 			
 		JMP loopa
 
 		endItAll:
 
 		INVOKE ExitProcess, 0
+
+		;End and exit the code
 
 		RET
 	main ENDP

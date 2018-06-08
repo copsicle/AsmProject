@@ -1,6 +1,0 @@
-1. Make all functions work with any object
-2. Write lots of comments
-3. Add two digit score counting
-4. Organise the code
-5. Start writing project book (urgent)
-6. Start adding a twist to the game (I might not have time for this)

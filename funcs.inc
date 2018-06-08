@@ -447,11 +447,6 @@
 			INVOKE drd_imageDraw, OFFSET loseMsg.info, EBX, EAX
 			INVOKE drd_imageDraw, OFFSET resMsg.info, resMsg.pos.x, resMsg.pos.y
 			INVOKE drd_flip
-			loopc:
-				INVOKE drd_processMessages
-				INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
-				CMP restarted, 1
-				JE okNow
 			JMP loopc
 		p2wins:
 			MOV EAX, 0
@@ -460,12 +455,12 @@
 			INVOKE drd_imageDraw, OFFSET loseMsg.info, EAX, EAX
 			INVOKE drd_imageDraw, OFFSET resMsg.info, resMsg.pos.x, resMsg.pos.y
 			INVOKE drd_flip
-			loopf:
-				INVOKE drd_processMessages
-				INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
-				CMP restarted, 1
-				JE okNow
-			JMP loopf
+		loopc:
+			INVOKE drd_processMessages
+			INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
+			CMP restarted, 1
+			JE okNow
+		JMP loopc
 		okNow:
 			DEC restarted
 			JMP lol

@@ -66,7 +66,7 @@
 
 .DATA
 
-	hddBG BYTE "bg3.bmp", 0
+	hddBG BYTE "bg2.bmp", 0
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
 	hddScores BYTE "score.bmp", 0

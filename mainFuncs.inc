@@ -5,6 +5,12 @@ INCLUDELIB drd.lib
 
 ;Include the inc and library of drd
 
+INCLUDE \masm32\include\winmm.inc
+
+INCLUDELIB \masm32\lib\winmm.lib
+
+;Inclde libraries for sound
+
 INCLUDE data.inc
 
 INCLUDE funcs.inc
@@ -75,6 +81,8 @@ INCLUDE funcs.inc
 		;INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
+
+		;INVOKE PlaySound, OFFSET hddMusic, 0, SND_FILENAME
 
 		POPA
 

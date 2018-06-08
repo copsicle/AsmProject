@@ -39,7 +39,7 @@
 
 	;Keyboard key constants
 
-	endScore EQU 100
+	endScore EQU 10
 	scoreBorder EQU 50
 	spacing EQU 10
 	p1ScorePos EQU ((xlen / 2) - (scoreBorder * 3))
@@ -54,6 +54,7 @@
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
 	hddScores BYTE "score.bmp", 0
+	hddMusic BYTE "music.wav", 0
 
 	;Saves locations of images to memory as bytes
 	

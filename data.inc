@@ -47,6 +47,18 @@
 	p2ScorePos EQU ((xlen / 2) + (scoreBorder * 3) + spacing)
 	p2ScorePos2 EQU ((xlen / 2) + (scoreBorder * 2))
 
+	msgBorderX EQU 220
+	msgBorderY EQU 46
+	resBorderX EQU 403
+	resBorderY EQU 34
+	startBorderX EQU 500
+	startBorderY EQU 400
+
+	startX EQU ((xlen - startBorderX) / 2)
+	startY EQU ((ylen - startBorderY) / 2)
+	restX EQU ((xlen - resBorderX) / 2)
+	restY EQU ((ylen - resBorderY) / 2)
+	p2Msg EQU (xlen - msgBorderX)
 
 .DATA
 
@@ -54,14 +66,23 @@
 	hddPlayer BYTE "pongp.bmp", 0
 	hddBall BYTE "ball.bmp", 0
 	hddScores BYTE "score.bmp", 0
-	hddMusic BYTE "music.wav", 0
+	hddWin BYTE "winmsg.bmp", 0
+	hddLose BYTE "losemsg.bmp", 0
+	hddRes BYTE "resmsg.bmp", 0
+	hddStart BYTE "start.bmp", 0
 
 	;Saves locations of images to memory as bytes
+
+	hddMusic BYTE "music.wav", 0
+	hddStart2 BYTE "start.wav", 0
+	hddP1 BYTE "p1hit.wav", 0
+	hddP2 BYTE "p2hit.wav", 0
 	
 	p1Score DWORD 0, 0
 	p2Score DWORD 0, 0
 	pScored BYTE 1, 0
 	endTheGame BYTE 0, 0
+	restarted BYTE 0, 0
 
 	Keys STRUCT
 
@@ -88,17 +109,23 @@
 
 	;Struct for characters - kinda like an object
 
+	menu Character<<startX, startY>,<>,<>,<>,<>,<>>
+	resMsg Character<<restX, restY>,<>,<>,<>,<>,<>>
+
 	BG1 Character<<(xlen / 2), 0>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
 	BG2 Character<<(-xlen / 2), 0>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
 
 	player1 Character<<playerW * 2, playerMid>,<0,0>,<WKEY, SKEY>,<>,<>,<>>
 	player2 Character<<xlen - (playerW * 3), playerMid>,<0,0>,<upArrow, downArrow>,<>,<>,<>>
 
-	ball Character<<ballMidX, ballMidY>,<ballSpeed, ballSpeed>,<>,<>,<>>
+	ball Character<<ballMidX, ballMidY>,<ballSpeed, ballSpeed>,<>,<>,<>,<>>
 
 	scoreImgP1 Character<<p1ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 	scoreImgP2 Character<<p2ScorePos, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 	scoreImgP12 Character<<p1ScorePos2, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
 	scoreImgP22 Character<<p2ScorePos2, 0>,<0,0>,<>,<>,<0,0>,<scoreBorder, scoreBorder>>
+
+	winMsg Character<<>,<>,<>,<>,<>,<>>
+	loseMsg Character<<>,<>,<>,<>,<>,<>>
 
 	;Defining objects for the pictures we need to move

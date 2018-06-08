@@ -22,6 +22,23 @@
 		RET
 	startPos ENDP
 
+	gameMenu PROC
+		loopb:
+			PUSHA
+			INVOKE drd_processMessages
+			INVOKE drd_imageDraw, OFFSET menu.info, menu.pos.x, menu.pos.y
+			INVOKE drd_flip
+			INVOKE GetAsyncKeyState, space
+			CMP AX, 0
+			JNE startGame
+			POPA
+			JMP loopb
+			startGame:
+			INVOKE PlaySound, OFFSET hddStart, NULL, SND_ASYNC
+			POPA
+		RET
+	gameMenu ENDP
+
 	bgcmp PROC adrObj:DWORD, ballObj:DWORD
 
 	;Start of background comparing function
@@ -89,7 +106,7 @@
 		
 		INVOKE drd_processMessages
 
-		;Mkae sure we get key inputs
+		;Make sure we get key inputs
 		
 		INVOKE GetAsyncKeyState, PKEY
 		CMP AX, 0
@@ -127,11 +144,6 @@
 		;Put the object address in a register
 
 		MOV EDX, [ECX + 8]
-
-		;Character object layout 1. pos -> 2 DWORDS for x and y(8 bytes)
-		;2. drc -> same as pos (starting in byte 8 after initial object address)
-		;3. Keys -> 2 DWORDS for the keys for moving up and down (starting in byte 16 after initial object address)
-		;4. info -> the image of the character (starting in byte 24 after initial object address)
 
 		ADD [ECX], EDX
 
@@ -391,23 +403,6 @@
 		RET
 	scoring ENDP
 
-	endGame PROC
-		PUSHA
-		CMP p1Score, endScore
-		JE endIt
-		CMP p2Score, endScore
-		JE endIt
-		INVOKE GetAsyncKeyState, escape
-		CMP AX, 0
-		JNE endIt
-		POPA
-		RET
-		endIt:
-			INC endTheGame
-			POPA
-		RET
-	endGame ENDP
-
 	restartGame PROC p1:DWORD, p2:DWORD, p12:DWORD, p22:DWORD
 		PUSHA
 		INVOKE GetAsyncKeyState, RKEY
@@ -428,7 +423,55 @@
 			MOV [EAX + 44], ECX
 			MOV [EBX + 44], ECX
 			INVOKE startPos
+			INC restarted
 		goNow:
 		POPA
 		RET
 	restartGame ENDP
+
+	endGame PROC
+		PUSHA
+		CMP p1Score, endScore
+		JE p1wins
+		CMP p2Score, endScore
+		JE p2wins
+		INVOKE GetAsyncKeyState, escape
+		CMP AX, 0
+		JNE endIt
+		POPA
+		RET
+		p1wins:
+			MOV EAX, 0
+			MOV EBX, p2Msg
+			INVOKE drd_imageDraw, OFFSET winMsg.info, EAX, EAX
+			INVOKE drd_imageDraw, OFFSET loseMsg.info, EBX, EAX
+			INVOKE drd_imageDraw, OFFSET resMsg.info, resMsg.pos.x, resMsg.pos.y
+			INVOKE drd_flip
+			loopc:
+				INVOKE drd_processMessages
+				INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
+				CMP restarted, 1
+				JE okNow
+			JMP loopc
+		p2wins:
+			MOV EAX, 0
+			MOV EBX, p2Msg
+			INVOKE drd_imageDraw, OFFSET winMsg.info, EBX, EAX
+			INVOKE drd_imageDraw, OFFSET loseMsg.info, EAX, EAX
+			INVOKE drd_imageDraw, OFFSET resMsg.info, resMsg.pos.x, resMsg.pos.y
+			INVOKE drd_flip
+			loopf:
+				INVOKE drd_processMessages
+				INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
+				CMP restarted, 1
+				JE okNow
+			JMP loopf
+		okNow:
+			DEC restarted
+			JMP lol
+		endIt:
+			INC endTheGame
+		lol:
+		POPA
+		RET
+	endGame ENDP

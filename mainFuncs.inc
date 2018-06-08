@@ -45,6 +45,14 @@ INCLUDE funcs.inc
 
 		INVOKE drd_imageLoadFile, OFFSET hddScores, OFFSET scoreImgP22.info
 
+		INVOKE drd_imageLoadFile, OFFSET hddWin, OFFSET winMsg.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddLose, OFFSET loseMsg.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddRes, OFFSET resMsg.info
+
+		INVOKE drd_imageLoadFile, OFFSET hddStart, OFFSET menu.info
+
 		;Load all the images to memory
 
 		INVOKE drd_imageSetTransparent, OFFSET ball.info, black
@@ -57,7 +65,19 @@ INCLUDE funcs.inc
 
 		INVOKE drd_imageSetTransparent, OFFSET scoreImgP22.info, black
 
+		INVOKE drd_imageSetTransparent, OFFSET winMsg.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET loseMsg.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET resMsg.info, black
+
+		INVOKE drd_imageSetTransparent, OFFSET menu.info, black
+
 		;Set the background color of pictures to transparent
+
+		INVOKE gameMenu
+
+		INVOKE PlaySound, OFFSET hddMusic, NULL, SND_ASYNC OR SND_LOOP
 
 		RET
 	init ENDP
@@ -78,11 +98,9 @@ INCLUDE funcs.inc
 
 		;Clear back buffer
 
-		;INVOKE Sleep, 3
+		INVOKE Sleep, 3
 
 		;Slow down drawing (this is for fast computers, un/comment this if too slow/fast)
-
-		;INVOKE PlaySound, OFFSET hddMusic, 0, SND_FILENAME
 
 		POPA
 
@@ -91,6 +109,13 @@ INCLUDE funcs.inc
 		INVOKE pauseGame
 
 		INVOKE restartGame, OFFSET scoreImgP1, OFFSET scoreImgP2, OFFSET scoreImgP12, OFFSET scoreImgP22
+
+		CMP restarted, 1
+		JE fix
+		JMP dontFix
+		fix:
+			DEC restarted
+		dontFix:
 
 		INVOKE moveWithKeys, OFFSET player1
 

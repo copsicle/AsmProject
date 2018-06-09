@@ -619,6 +619,11 @@
 			INC restarted
 
 			;Increments restarted for letting the endGame function (below) know the game restarted
+
+			INVOKE PlaySound, NULL, NULL, SND_ASYNC
+			INVOKE PlaySound, OFFSET hddMusic, NULL, SND_ASYNC OR SND_LOOP
+
+			;Restart the music from the start
 		
 		goNow:
 		

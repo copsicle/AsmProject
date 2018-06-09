@@ -5,12 +5,6 @@ INCLUDELIB drd.lib
 
 ;Include the inc and library of drd
 
-INCLUDE \masm32\include\winmm.inc
-
-INCLUDELIB \masm32\lib\winmm.lib
-
-;Inclde libraries for sound
-
 INCLUDE data.inc
 
 INCLUDE funcs.inc

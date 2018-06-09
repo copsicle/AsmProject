@@ -78,8 +78,7 @@
 	;Saves locations of images to memory as bytes
 
 	hddMusic BYTE "music.wav", 0
-	hddP1 BYTE "p1hit.wav", 0
-	hddP2 BYTE "p2hit.wav", 0
+	hddEnd BYTE "end.wav", 0
 
 	;Locations of music files
 	

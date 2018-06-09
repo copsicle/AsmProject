@@ -1,4 +1,10 @@
 
+INCLUDE \masm32\include\winmm.inc
+
+INCLUDELIB \masm32\lib\winmm.lib
+
+;Inclde libraries for sound
+
 .CODE
 
 	startPos PROC
@@ -669,6 +675,10 @@
 			INVOKE drd_flip
 
 			;Draws end screen for when player 1 wins
+
+			INVOKE PlaySound, OFFSET hddEnd, NULL, SND_ASYNC OR SND_LOOP
+
+			;Play end music
 			
 			JMP loopc
 		
@@ -685,6 +695,10 @@
 			INVOKE drd_flip
 		
 			;Draws end screen for when player 2 wins
+
+			INVOKE PlaySound, OFFSET hddEnd, NULL, SND_ASYNC OR SND_LOOP
+
+			;Play end music
 
 		loopc:
 			

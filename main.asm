@@ -7,14 +7,6 @@ INCLUDE mainFuncs.inc
 
 ;Include all of the functions
 
-.386
-
-;Limit CPU instructions that masm is allwed to use
-
-.MODEL flat, STDCALL
-
-;Define memory model to use, masm seems to ignore it though
-
 .CODE
 	
 	main PROC
@@ -28,8 +20,7 @@ INCLUDE mainFuncs.inc
 		loopa:
 
 		;Start main loop 
-
-		;Call all drawing and updating functions and repeat them infinitly
+		;Call all drawing and updating functions and repeat them infinitley
 
 			INVOKE draw
 

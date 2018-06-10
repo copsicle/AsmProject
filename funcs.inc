@@ -230,7 +230,7 @@ INCLUDELIB \masm32\lib\winmm.lib
 			MOV ECX, adrObj    
 			MOV [ECX + 12], EAX
 
-			;Put -1 in the Y direction of the object so it will go upwards
+			;Put 1 in the Y direction of the object so it will go downwards
 		
 		endIt:
 
